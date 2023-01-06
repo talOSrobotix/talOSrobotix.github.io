@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- Add the navbar to the top of the page -->
+    <nav>
+      <div class="title">tal.OS</div>
+      <div class="links">
+        <a href="index.html"class="active">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Add the homepage content -->
+    <div class="container">
+      <h1 class="welcome">Welcome to My Website!</h1>
+      <p class="description">
+      </p>
+    </div>
+
+    <!-- Add the script that fetches the text file and displays it in the HTML -->
+    <script>
+      fetch("currentValues.txt")
+        .then(response => response.text())
+        .then(text => {
+          // Display the text in the HTML
+          document.querySelector(".description").textContent = text;
+        });
+    </script>
+  </body>
+</html>

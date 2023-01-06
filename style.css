@@ -1,0 +1,62 @@
+/* Style sheet for the navbar */
+nav {
+  background-color: #333;
+  display: flex;
+  align-items: center;
+}
+
+/* Style for the navbar title */
+nav .title {
+  color: white;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+/* Style for the navbar links */
+nav .links {
+  display: flex;
+  margin-left: auto;
+}
+nav .links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Add a hover effect for the navbar links */
+nav .links a:hover {
+  background-color: #444;
+}
+
+/* Add an active state for the current page */
+nav .links a.active {
+  background-color: #555;
+}
+
+/* Style for the homepage content */
+body {
+  background-color: #474747;
+  font-family: "Open Sans", sans-serif;
+  color: white; /* Add this line to change the body text color to white */
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.welcome {
+  font-size: 32px;
+  font-weight: bold;
+}
+.description {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.welcome-text {
+  text-align: center;
+}
+
