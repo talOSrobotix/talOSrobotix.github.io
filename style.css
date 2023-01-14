@@ -60,3 +60,28 @@ body {
   text-align: center;
 }
 
+.horizontal div{
+  float: left;
+  clear: none;
+  width: 25%;
+}
+
+select {
+  width: 50%;
+  
+  height: 30px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Style the options in the dropdown menu */
+option {
+  background-color: #f2f2f2;
+}
+
+/* Style the dropdown button when the user hovers over it with the mouse */
+select:hover {
+  border: 2px solid #555;
+}
