@@ -3,6 +3,10 @@ nav {
   background-color: #333;
   display: flex;
   align-items: center;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
 }
 
 /* Style for the navbar title */
@@ -41,6 +45,7 @@ body {
   background-color: #474747;
   font-family: "Open Sans", sans-serif;
   color: white; /* Add this line to change the body text color to white */
+  margin: 0;
 }
 .container {
   max-width: 800px;

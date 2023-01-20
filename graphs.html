@@ -18,27 +18,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.0/d3.min.js" 
       integrity="sha512-jXsLjbg/Pr8F5U2evjFaEci7mImlUix865lbvnNmp5TzS86+VTTFVDz7FFTS6VHdhSn7UJ4tjZdvpp0GgT0fZA==" 
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <nav>
-      <div class="title">tal.OS</div>
-      <div class="links">
-        <a href="index.html">Home</a>
-        <a class="active" href="#">Dashboard</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-    </nav>
+      <nav>
+        <div class="title">tal.OS - Electricity manager</div>
+        <div class="links">
+          <a href="index.html">Home</a>
+          <a href="#">Dashboard</a>
+          <a href="graphs.html" class="active">Graphs</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+        </div>
+      </nav>
     <h1 class="welcome-text">Welcome to the dashboard</h1>
     <div class ="horizontal">
       <div>
-        <p style="color:rgb(112, 32, 56);font-weight: bold;">Pick time frame:</p>
+        <p style="color:rgb(255, 255, 255);font-weight: bold;">Date</p>
         <select id = "time_frame">
           <option value ="day">Day</option>
-          <option value ="week">Week</option>
-          <option value = "month">Month</option>
+          <option value ="month">Month</option>
+          <option value = "year">Year</option>
         </select>
       </div>
       <div>
-        <p style="color:rgb(112, 32, 56);font-weight: bold;">Pick a date:</p>
+        <p style="color:rgb(255, 255, 255);font-weight: bold;">Pick a date:</p>
         <input type="date" id="pick_date" style="width:200px;height:30px;font-size:15px;">
       </div>
       

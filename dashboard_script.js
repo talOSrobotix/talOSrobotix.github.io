@@ -1,50 +1,69 @@
 //const charData = "https://drive.google.com/file/d/1Nmsc6bbR_yzs7V82bllOTDxtRgeK1ajY";
       
 var startDateInput = document.getElementById("pick_date");
+var dateType = document.getElementById("time_frame");
 var startDate;
+var time_frame = "day";
+const charData = "https://www.googleapis.com/drive/v3/files/1FYrbkNbZVKVGDnsM5Fcji6Og3_QXfnW3?alt=media&key=AIzaSyCbqmghV90m-2pnk94hNDDSldwd2q-IYRY";
 
 startDateInput.addEventListener("change", function() {
   startDate = startDateInput.value;
-  
-  
   console.log(startDate);
+  generateGraph();
+});
 
-  const charData = "https://www.googleapis.com/drive/v3/files/1FYrbkNbZVKVGDnsM5Fcji6Og3_QXfnW3?alt=media&key=AIzaSyCbqmghV90m-2pnk94hNDDSldwd2q-IYRY";
-  //const charData = "dataSheet.csv"
+dateType.addEventListener("change", function() {
+  time_frame = dateType.value;
+  console.log(time_frame);
+});
 
-d3.csv(charData).then(function(datapoints){
+function generateGraph() {
+  let date = new Date(startDate);
+  let day = date.getDate();
+  let month = date.getMonth()+1;
+  let year = date.getFullYear();
+  console.log("Day: " + day);
+  console.log("Month: " + month);
+  console.log("Year: " + year);
 
+  // Graph
+  d3.csv(charData).then(function(datapoints){
   console.log(datapoints)
-  const date = [];
-  const hour = [];
+  const time = [];
   const value = [];
 
-  let suitability_control = 0;
-  for (i =0; i <datapoints.length; i++){
-
-    if (datapoints[i].Date == "First"){
-      for (j =i+1; j <datapoints.length; j++){
-
-        if (datapoints[j].Date == "ok"){
-          break;
-        }
-        else{
-          date.push(datapoints[j].Date);
-          hour.push(datapoints[j].Hour);
-          value.push(datapoints[j].Value);
-        }
-      }
-      break;
-    }
-    
-  }
   
-  console.log(value)
+ if (time_frame == "day"){
+    for(l=0; l < datapoints.length; l++){
+      if(datapoints[l].time == ("y|" + year)){
+        for (k=l+1; k < datapoints.length; k++){
+          if(datapoints[k].time == ("m|" + month)){
+            for (i = k+1; i <datapoints.length; i++){
+              if (datapoints[i].time == ("d|" + day)){
+                for (j =i+1; j < datapoints.length; j++){
+                if (datapoints[j].time == ("d|" + (day + 1)) || (datapoints[j].time).includes("m|")){
+                  break;
+                }
+                else{
+                  time.push(datapoints[j].time);
+                  value.push(datapoints[j].value);
+              }
+              }
+              break;
+            }
+          }
+          }
+      }
+  }}}
+  
+
+
+console.log(value)
 // setup 
 const data = {
-  labels: date,
+  labels: time,
   datasets: [{
-    label: 'Weekly Sales',
+    label: 'Consumption (in KWh)',
     data: value,
     backgroundColor: [
       'rgba(255, 26, 104, 0.2)',
@@ -70,7 +89,7 @@ const data = {
 
 // config 
 const config = {
-  type: 'bar',
+  type: 'line',
   data,
   options: {
     scales: {
@@ -88,5 +107,6 @@ const myChart = new Chart(
 );
 
 });
-});
+};
+
 
