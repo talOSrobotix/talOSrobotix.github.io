@@ -44,7 +44,7 @@ nav .links a.active {
 body {
   background-color: #474747;
   font-family: "Open Sans", sans-serif;
-  color: white; /* Add this line to change the body text color to white */
+  color: rgb(60, 59, 59); /* Add this line to change the body text color to white */
   margin: 0;
 }
 .container {
@@ -145,4 +145,23 @@ h1 {
   text-align: center;
   color: #ffffff;
 }
+
+h1 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.landing {
+  text-align: center;
+  color: #ffffff;
+}
+
+.about-container {
+  color: #ffffff;
+}
+
+label {
+  color: #ffffff;
+}
+
 

@@ -68,68 +68,63 @@ function generateGraph() {
   const value = [];
 
   
- if (time_frame == "day"){
-    for(l=0; l < datapoints.length; l++){
-      if(datapoints[l].time == ("y|" + year)){
-        for (k=l+1; k < datapoints.length; k++){
-          if(datapoints[k].time == ("m|" + month)){
-            for (i = k+1; i <datapoints.length; i++){
-              if (datapoints[i].time == ("d|" + day)){
-                for (j =i+1; j < datapoints.length; j++){
-                if (datapoints[j].time == ("d|" + (day + 1)) || (datapoints[j].time).includes("m|")){
-                  break;
+  if (time_frame == "day"){
+    let yearIndex = datapoints.findIndex(point => point.time == ("y|" + year));
+    if (yearIndex !== -1) {
+        let monthIndex = datapoints.findIndex(point => point.time == ("m|" + month), yearIndex + 1);
+        if (monthIndex !== -1) {
+            let dayIndex = datapoints.findIndex(point => point.time == ("d|" + day), monthIndex + 1);
+            if (dayIndex !== -1) {
+                for (let i = dayIndex; i < datapoints.length; i++) {
+                    let currentYear = parseInt(datapoints[i].time.split('|')[1]);
+                    let currentMonth = parseInt(datapoints[i].time.split('|')[1]);
+                    let currentDay = parseInt(datapoints[i].time.split('|')[1]);
+                    if (currentYear > year || currentMonth > month || currentDay > day) {
+                        break;
+                    } else{
+                        time.push(datapoints[i].time);
+                        value.push(datapoints[i].value);
+                        }
+                    }
                 }
-                else{
-                  time.push(datapoints[j].time);
-                  value.push(datapoints[j].value);
-              }
-              }
-              break;
             }
-          }
-          }
-      }
-  }}}
-  else if (time_frame == "month"){
-    for(i =0; i < datapoints.length; i++){
-    if (datapoints[i].time == ("y|" + year)){
-      for(j =i+1; j < datapoints.length; j++){
-        
-        if(datapoints[j].time == ("m|" + month)){
-          for(k=j+1; k<datapoints.length; k++){
-            if(datapoints[k].time.includes("d|")){
-              time.push(datapoints[k].time);
-              value.push(datapoints[k].value);
-            }
-            else if (datapoints[k].time.includes("m|") || datapoints[k].time.includes("y|")){
-              break;
-            }
-          }          
         }
-        else if(datapoints[j].time.includes("y|")){
+    }
+
+
+
+else if (time_frame == "month") {
+    let yearIndex = datapoints.findIndex(point => point.time == ("y|" + year));
+    if (yearIndex !== -1) {
+      let monthIndex = datapoints.findIndex(point => point.time == ("m|" + month), yearIndex + 1);
+      if (monthIndex !== -1) {
+        for (let i = monthIndex + 1; i < datapoints.length; i++) {
+          if (datapoints[i].time.includes("d|")) {
+            time.push(datapoints[i].time);
+            value.push(datapoints[i].value);
+          }
+          else if (datapoints[i].time.includes("m|") || datapoints[i].time.includes("y|")) {
+            break;
+          }
+        }
+      }
+    }
+  } else if (time_frame == "year") {
+    console.log("yearee=")
+    let yearIndex = datapoints.findIndex(point => point.time.includes("y|" + year));
+    if (yearIndex !== -1) {
+      for (let i = yearIndex + 1; i < datapoints.length; i++) {
+        if (datapoints[i].time.includes("m|")) {
+          time.push(datapoints[i].time);
+          value.push(datapoints[i].value);
+        }
+        else if (datapoints[i].time.includes("y|")) {
           break;
         }
-
       }
     }
-  }}
-  else if (time_frame == "year"){
-    console.log("yearee=")
-    for(i =0; i < datapoints.length; i++){
-    if (datapoints[i].time.includes("y|" + year)){
-          for(j=i+1; j<datapoints.length; j++){
-            if(datapoints[j].time.includes("m|")){
-              time.push(datapoints[j].time);
-              value.push(datapoints[j].value);
-            }
-            else if (datapoints[j].time.includes("y|")){
-              break;
-            }
-          }  
-          break;      
-    }
   }
-}
+  
 
 
 
